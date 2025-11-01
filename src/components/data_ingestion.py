@@ -6,6 +6,7 @@ from src.logger import logging
 from dataclasses import dataclass
 from sklearn.model_selection import train_test_split
 from src.components.data_tranceformation import DataTransformation,datatransformationconfig
+from src.components.model_trainer import modeltraningconfig,ModelTraning
 @dataclass
 class DataIngestionConfig:
     train_data_path: str = os.path.join('artifact', 'train.csv')
@@ -48,4 +49,6 @@ if __name__ == "__main__":
     obj = DataIngestion()
     train_data,test_data = obj.initiate_data_ingestion()
     data_transformation = DataTransformation()
-    data_transformation.start_data_transfrom(train_data,test_data)
+    train_arr,test_arr,_ = data_transformation.start_data_transfrom(train_data,test_data)
+    model = ModelTraning()
+    print(model.start_model_traing(train_arr,test_arr))
