@@ -25,7 +25,6 @@ class ModelTraning:
         try:
             logging.info("Splitting train and test data")
 
-            # ✅ Split features and target correctly
             X_train, y_train, X_test, y_test = (
                 train_array[:, :-1],
                 train_array[:, -1],
@@ -44,11 +43,8 @@ class ModelTraning:
                 'CatBoostRegressor': CatBoostRegressor(verbose=0)
             }
 
-            model_report: dict = evalute_model(
-                X_train=X_train, y_train=y_train,
-                X_test=X_test, y_test=y_test,
-                models=models
-            )
+            model_report: dict = evalute_model(X_train=X_train, y_train=y_train,X_test=X_test,
+                                               y_test=y_test,models=models)
 
             best_model_score = max(sorted(model_report.values()))
             best_model_name = list(model_report.keys())[list(model_report.values()).index(best_model_score)]
