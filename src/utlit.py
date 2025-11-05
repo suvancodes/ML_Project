@@ -11,7 +11,7 @@ def save_obj(file_path, obj):
         with open(file_path, 'wb') as file_obj:
             dill.dump(obj, file_obj)
     except Exception as e:
-        raise e
+        raise CustomException(e,sys)
     
     
 
@@ -31,9 +31,8 @@ def evalute_model(X_train, y_train, X_test, y_test, models):
 
     except Exception as e:
         raise CustomException(e, sys)
-    
-    
-    
+
+
 def lode_obj(file_path):
     try:
         with open(file_path,'rb') as file_obj:
